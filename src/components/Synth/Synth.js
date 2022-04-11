@@ -36,7 +36,7 @@ function Synth() {
             }}
           />
           {/* Feedback effect  */}
-          {/* <Effect type="feedbackDelay" /> */}
+          <Effect type="autoFilter" />
         </Track>
       </Song>
       <Button
@@ -46,7 +46,7 @@ function Synth() {
         }}
       >
         {" "}
-        {playing ? "Stop sound" : "Play sound"}
+        {playing ? "Stop" : "Play"}
       </Button>
       <Stack direction="horizontal" gap={3}>
         <Donut
