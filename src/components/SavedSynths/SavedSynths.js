@@ -8,7 +8,6 @@ function SavedSynths(props) {
   return (
     <div>
       <h2>Saved Synths</h2>
-      <SaveForm />
     </div>
   );
 }

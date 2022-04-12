@@ -183,8 +183,8 @@ function Synth() {
             key={idx}
             id={`radio-${idx}`}
             type="radio"
-            variant="secondary"
-            name="radio"
+            variant="primary"
+            name="synthType"
             value={synth.value}
             checked={typeSynth === synth.value}
             onChange={(e) => setTypeSynth(e.currentTarget.value)}
@@ -204,10 +204,15 @@ function Synth() {
         {" "}
         {playing ? "Stop" : "Play"}
       </Button>
-      <Button className="save" variant="primary" onClick={() => {}}>
+      <Button
+        className="save"
+        variant="primary"
+        onClick={() => {
+          return <SaveForm />;
+        }}
+      >
         Save
       </Button>
-      <SaveForm />
     </div>
   );
 }

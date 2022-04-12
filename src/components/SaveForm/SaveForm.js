@@ -1,7 +1,7 @@
 import React from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
-const SaveForm = ({}) => {
+const SaveForm = ({ handleSubmit, handleChange, formData, error }) => {
   return <div></div>;
 };
 
