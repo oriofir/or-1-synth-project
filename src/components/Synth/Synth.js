@@ -1,26 +1,19 @@
 import React, { useState } from "react";
 import { Song, Track, Instrument, Effect } from "reactronica";
-import Tone from "tone";
 import { Donut } from "react-dial-knob";
-import {
-  Button,
-  Stack,
-  DropdownButton,
-  Dropdown,
-  SplitButton,
-  ButtonGroup,
-} from "react-bootstrap";
+import { Button, Stack, ToggleButton, ButtonGroup } from "react-bootstrap";
 import "./Synth.css";
+import SaveForm from "../SaveForm/SaveForm";
 
 function Synth() {
-  const initialEnvelope = {
-    attack: 0,
-    decay: 0,
-    sustain: 0,
-    release: 0,
-  };
+  // const initialEnvelope = {
+  //   attack: 0,
+  //   decay: 0,
+  //   sustain: 0,
+  //   release: 0,
+  // };
 
-  const [envelopeChange, setEnvelopeChange] = useState(initialEnvelope);
+  // const [envelopeChange, setEnvelopeChange] = useState(initialEnvelope);
 
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(-5);
@@ -30,12 +23,20 @@ function Synth() {
   const [decay, setDecay] = useState(0);
   const [sustain, setSustain] = useState(0);
   const [release, setRelease] = useState(0);
+  const [typeSynth, setTypeSynth] = useState("monoSynth");
+  const [oscillatorType, setOscillatorType] = useState("sine");
 
-  const changeAttack = (event) => {
-    setEnvelopeChange((prevState) => {
-      return { ...prevState, [event.target.attack]: event.target.value };
-    });
-  };
+  // const changeAttack = (event) => {
+  //   setEnvelopeChange((prevState) => {
+  //     return { ...prevState, [event.target.attack]: event.target.value };
+  //   });
+  // };
+
+  const synthType = [
+    { name: "MonoSynth", value: "monoSynth" },
+    { name: "DuoSynth", value: "duoSynth" },
+    { name: "FMSynth", value: "fmSynth" },
+  ];
 
   return (
     <div>
@@ -45,12 +46,12 @@ function Synth() {
         <Track steps={["C2", null]}>
           {/* Browser-based synth */}
           <Instrument
-            type="duoSynth"
+            type={typeSynth}
             envelope={{
               attack: 0,
               decay: 0,
               sustain: 0,
-              release: 0.5,
+              release: 0,
             }}
           />
           {/* Feedback effect  */}
@@ -62,7 +63,7 @@ function Synth() {
       <Stack className="controlStack" direction="horizontal" gap={4}>
         <Donut
           className="volume"
-          diameter={100}
+          diameter={125}
           min={0}
           max={10}
           step={1}
@@ -79,7 +80,7 @@ function Synth() {
         </Donut>
         <Donut
           className="filter"
-          diameter={100}
+          diameter={125}
           min={0}
           max={1}
           step={0.25}
@@ -95,7 +96,7 @@ function Synth() {
         </Donut>
         <Donut
           className="delay"
-          diameter={100}
+          diameter={125}
           min={0}
           max={1}
           step={0.25}
@@ -176,8 +177,25 @@ function Synth() {
           <label id={"Release"}>Release</label>
         </Donut>
       </Stack>
+      <ButtonGroup className="mb-2">
+        {synthType.map((synth, idx) => (
+          <ToggleButton
+            key={idx}
+            id={`radio-${idx}`}
+            type="radio"
+            variant="secondary"
+            name="radio"
+            value={synth.value}
+            checked={typeSynth === synth.value}
+            onChange={(e) => setTypeSynth(e.currentTarget.value)}
+          >
+            {synth.name}
+          </ToggleButton>
+        ))}
+      </ButtonGroup>
 
       <Button
+        className="play"
         variant="primary"
         onClick={() => {
           setPlaying(!playing);
@@ -186,6 +204,10 @@ function Synth() {
         {" "}
         {playing ? "Stop" : "Play"}
       </Button>
+      <Button className="save" variant="primary" onClick={() => {}}>
+        Save
+      </Button>
+      <SaveForm />
     </div>
   );
 }

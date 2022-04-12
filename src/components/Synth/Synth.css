@@ -1,9 +1,9 @@
 .controlStack {
   display: flex;
-  margin: 30px;
+  margin: 20px;
   align-content: center;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   text-align: center;
 }
 .envelopeStack {
@@ -19,6 +19,8 @@ Button {
   padding: 10px 60px;
   display: flex;
   background-color: white;
+  align-items: flex-start;
   border-radius: 10px;
   margin: 20px;
+  display: inline;
 }
