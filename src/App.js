@@ -5,7 +5,7 @@ import Synth from "./components/Synth/Synth";
 function App() {
   return (
     <div>
-      OR-1 Synthesizer
+      <h1>OR-1 Synthesizer</h1>
       <Synth className="synth" />
     </div>
   );

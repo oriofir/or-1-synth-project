@@ -1,0 +1,24 @@
+.controlStack {
+  display: flex;
+  margin: 30px;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+}
+.envelopeStack {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  /* align-items: center; */
+}
+
+Button {
+  padding: 10px 60px;
+  display: flex;
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px;
+}

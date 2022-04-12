@@ -10,3 +10,12 @@
     transform: rotate(360deg);
   }
 }
+
+h1 {
+  margin-left: 20px;
+}
+
+.synth {
+  display: flex;
+  flex-direction: row;
+}
