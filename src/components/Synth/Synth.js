@@ -45,15 +45,7 @@ function Synth() {
         {/* Track with sequenced steps */}
         <Track steps={["C2", null]}>
           {/* Browser-based synth */}
-          <Instrument
-            type={typeSynth}
-            envelope={{
-              attack: 0,
-              decay: 0,
-              sustain: 0,
-              release: 0,
-            }}
-          />
+          <Instrument type={typeSynth} />
           {/* Feedback effect  */}
           <Effect type="autoFilter" wet={filter} />
           <Effect type="feedbackDelay" wet={delay} />
