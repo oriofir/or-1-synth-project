@@ -24,6 +24,7 @@ function Synth() {
   const [sustain, setSustain] = useState(0);
   const [release, setRelease] = useState(0);
   const [typeSynth, setTypeSynth] = useState("monoSynth");
+  const [envelope, setEnvelope] = useState(0);
   const [oscillatorType, setOscillatorType] = useState("sine");
 
   // const changeAttack = (event) => {
@@ -38,6 +39,13 @@ function Synth() {
     { name: "FMSynth", value: "fmSynth" },
   ];
 
+  const envelopeType = [
+    { name: "Attack", value: attack },
+    { name: "Decay", value: decay },
+    { name: "Sustain", value: sustain },
+    { name: "Release", value: release },
+  ];
+
   return (
     <div>
       <Song bpm={110} isPlaying={playing} volume={volume}>
@@ -45,7 +53,7 @@ function Synth() {
         {/* Track with sequenced steps */}
         <Track steps={["C2", null]}>
           {/* Browser-based synth */}
-          <Instrument type={typeSynth} />
+          <Instrument type={typeSynth} envelope={envelope} />
           {/* Feedback effect  */}
           <Effect type="autoFilter" wet={filter} />
           <Effect type="feedbackDelay" wet={delay} />
@@ -103,8 +111,74 @@ function Synth() {
           <label id={"delay"}>Delay</label>
         </Donut>
       </Stack>
+
       <Stack className="envelopeStack" direction="horizontal" gap={4}>
-        <Donut
+        {envelopeType.map((envelope, idx) => {
+          return (
+            <Donut
+              key={idx}
+              id={`envelope-${idx}`}
+              diameter={100}
+              min={0}
+              max={1}
+              step={0.25}
+              value={envelope.value}
+              theme={{
+                donutColor: "black",
+                donutThickness: 15,
+              }}
+              onValueChange={(e) => setEnvelope(e.currentTarget.value)}
+              ariaLabelledBy={envelope.name}
+            >
+              <label id={`envelope-${idx}`}>{envelope.name}</label>
+            </Donut>
+          );
+        })}
+      </Stack>
+      <ButtonGroup className="mb-2">
+        {synthType.map((synth, idx) => (
+          <ToggleButton
+            key={idx}
+            id={`synth-${idx}`}
+            type="radio"
+            variant="primary"
+            name="synthType"
+            value={synth.value}
+            checked={typeSynth === synth.value}
+            onChange={(e) => setTypeSynth(e.currentTarget.value)}
+          >
+            {synth.name}
+          </ToggleButton>
+        ))}
+      </ButtonGroup>
+
+      <Button
+        className="play"
+        variant="primary"
+        onClick={() => {
+          setPlaying(!playing);
+        }}
+      >
+        {" "}
+        {playing ? "Stop" : "Play"}
+      </Button>
+      <Button
+        className="save"
+        variant="primary"
+        onClick={() => {
+          return <SaveForm />;
+        }}
+      >
+        Save
+      </Button>
+    </div>
+  );
+}
+
+export default Synth;
+
+{
+  /* <Donut
           className="attack"
           diameter={100}
           min={0}
@@ -151,62 +225,5 @@ function Synth() {
           ariaLabelledBy={"Sustain"}
         >
           <label id={"Sustain"}>Sustain</label>
-        </Donut>
-        <Donut
-          className="release"
-          diameter={100}
-          min={0}
-          max={1}
-          step={0.25}
-          value={release}
-          theme={{
-            donutColor: "black",
-            donutThickness: 15,
-          }}
-          onValueChange={setRelease}
-          ariaLabelledBy={"Release"}
-        >
-          <label id={"Release"}>Release</label>
-        </Donut>
-      </Stack>
-      <ButtonGroup className="mb-2">
-        {synthType.map((synth, idx) => (
-          <ToggleButton
-            key={idx}
-            id={`radio-${idx}`}
-            type="radio"
-            variant="primary"
-            name="synthType"
-            value={synth.value}
-            checked={typeSynth === synth.value}
-            onChange={(e) => setTypeSynth(e.currentTarget.value)}
-          >
-            {synth.name}
-          </ToggleButton>
-        ))}
-      </ButtonGroup>
-
-      <Button
-        className="play"
-        variant="primary"
-        onClick={() => {
-          setPlaying(!playing);
-        }}
-      >
-        {" "}
-        {playing ? "Stop" : "Play"}
-      </Button>
-      <Button
-        className="save"
-        variant="primary"
-        onClick={() => {
-          return <SaveForm />;
-        }}
-      >
-        Save
-      </Button>
-    </div>
-  );
+        </Donut> */
 }
-
-export default Synth;
