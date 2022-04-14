@@ -26,7 +26,7 @@ function SynthCreate(props) {
 
   return (
     <div>
-      <SynthForm
+      <SaveForm
         handleSubmit={createSynth}
         handleChange={handleChange}
         formData={newSynth}

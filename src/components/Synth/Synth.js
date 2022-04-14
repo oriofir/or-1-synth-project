@@ -194,7 +194,7 @@ function Synth() {
             key={idx}
             id={`synth-${idx}`}
             type="radio"
-            variant="primary"
+            variant="custom"
             name="synthType"
             value={synth.value}
             checked={typeSynth === synth.value}
@@ -207,7 +207,7 @@ function Synth() {
 
       <Button
         className="play"
-        variant="primary"
+        variant="outline-dark"
         onClick={() => {
           setPlaying(!playing);
         }}
@@ -217,7 +217,7 @@ function Synth() {
       </Button>
       <Button
         className="save"
-        variant="primary"
+        variant="outline-dark"
         onClick={() => {
           return <SaveForm />;
         }}
@@ -230,8 +230,7 @@ function Synth() {
 
 export default Synth;
 
-{
-  /* {effectType.map((property, idx) => {
+/* {effectType.map((property, idx) => {
           return (
             <Donut
               key={idx}
@@ -254,7 +253,3 @@ export default Synth;
             </Donut>
           );
         })} */
-}
-
-{
-}
