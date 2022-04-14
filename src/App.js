@@ -4,9 +4,15 @@ import "./App.css";
 import Synth from "./components/Synth/Synth";
 import SavedSynths from "./components/SavedSynths/SavedSynths";
 import Navigation from "./components/Navigation/Navigation";
-import { Container } from "react-bootstrap";
+import SaveForm from "./components/SaveForm/SaveForm";
+import { Container, Button } from "react-bootstrap";
 
 function App() {
+  const [modalShow, setModalShow] = useState(false);
+
+  const handleOpen = () => {
+    setModalShow(true);
+  };
   return (
     <>
       <Navigation />
@@ -16,6 +22,7 @@ function App() {
 
           <Route path="/saved" element={<SavedSynths />}></Route>
         </Routes>
+        <SaveForm />
       </main>
     </>
   );

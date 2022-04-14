@@ -193,8 +193,8 @@ function Synth() {
           <ToggleButton
             key={idx}
             id={`synth-${idx}`}
-            type="radio"
-            variant="custom"
+            type="checkbox"
+            variant={idx ? "outline-dark" : "outline-dark"}
             name="synthType"
             value={synth.value}
             checked={typeSynth === synth.value}
@@ -214,15 +214,6 @@ function Synth() {
       >
         {" "}
         {playing ? "Stop" : "Play"}
-      </Button>
-      <Button
-        className="save"
-        variant="outline-dark"
-        onClick={() => {
-          return <SaveForm />;
-        }}
-      >
-        Save
       </Button>
     </div>
   );
