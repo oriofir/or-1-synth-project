@@ -6,12 +6,12 @@ import "./Synth.css";
 import SaveForm from "../SaveForm/SaveForm";
 
 function Synth() {
-  // const initialEnvelope = {
-  //   attack: 0,
-  //   decay: 0,
-  //   sustain: 0,
-  //   release: 0,
-  // };
+  const initialEffect = {
+    distortion: 0,
+    autoWah: 0,
+    freeverb: 0,
+    tremolo: 0,
+  };
 
   // const [envelopeChange, setEnvelopeChange] = useState(initialEnvelope);
 
@@ -19,13 +19,12 @@ function Synth() {
   const [volume, setVolume] = useState(-5);
   const [filter, setFilter] = useState(0);
   const [delay, setDelay] = useState(0);
-  const [attack, setAttack] = useState(0);
-  const [decay, setDecay] = useState(0);
-  const [sustain, setSustain] = useState(0);
-  const [release, setRelease] = useState(0);
-  const [typeSynth, setTypeSynth] = useState("monoSynth");
-  const [envelope, setEnvelope] = useState(0);
-  const [oscillatorType, setOscillatorType] = useState("sine");
+  const [distortion, setDistortion] = useState(0);
+  const [autoWah, setAutoWah] = useState(0);
+  const [freeverb, setFreeverb] = useState(0);
+  const [tremolo, setTremolo] = useState(0);
+  const [typeSynth, setTypeSynth] = useState("duoSynth");
+  const [effect, setEffect] = useState(initialEffect);
 
   // const changeAttack = (event) => {
   //   setEnvelopeChange((prevState) => {
@@ -37,14 +36,21 @@ function Synth() {
     { name: "MonoSynth", value: "monoSynth" },
     { name: "DuoSynth", value: "duoSynth" },
     { name: "FMSynth", value: "fmSynth" },
+    { name: "AMSynth", value: "amSynth" },
+    { name: "PolySynth", value: "polySynth" },
   ];
 
-  const envelopeType = [
-    { name: "Attack", value: attack },
-    { name: "Decay", value: decay },
-    { name: "Sustain", value: sustain },
-    { name: "Release", value: release },
-  ];
+  // const handleChange = (value, property) => {
+  //   console.log(value, property);
+  //   setEffect({ ...effect, [property]: value });
+  // }
+
+  // const effectType = [
+  //   { name: "distortion", value: "distortion" },
+  //   { name: "autoWah", value: "autoWah" },
+  //   { name: "freeverb", value: "freeverb" },
+  //   { name: "tremolo", value: "tremolo" },
+  // ];
 
   return (
     <div>
@@ -53,10 +59,14 @@ function Synth() {
         {/* Track with sequenced steps */}
         <Track steps={["C2", null]}>
           {/* Browser-based synth */}
-          <Instrument type={typeSynth} envelope={envelope} />
+          <Instrument type={typeSynth} />
           {/* Feedback effect  */}
           <Effect type="autoFilter" wet={filter} />
           <Effect type="feedbackDelay" wet={delay} />
+          <Effect type="distortion" wet={distortion} />
+          <Effect type="autoWah" wet={autoWah} />
+          <Effect type="freeverb" wet={freeverb} />
+          <Effect type="tremolo" wet={tremolo} />
         </Track>
       </Song>
 
@@ -113,27 +123,70 @@ function Synth() {
       </Stack>
 
       <Stack className="envelopeStack" direction="horizontal" gap={4}>
-        {envelopeType.map((envelope, idx) => {
-          return (
-            <Donut
-              key={idx}
-              id={`envelope-${idx}`}
-              diameter={100}
-              min={0}
-              max={1}
-              step={0.25}
-              value={envelope.value}
-              theme={{
-                donutColor: "black",
-                donutThickness: 15,
-              }}
-              onValueChange={(e) => setEnvelope(e.currentTarget.value)}
-              ariaLabelledBy={envelope.name}
-            >
-              <label id={`envelope-${idx}`}>{envelope.name}</label>
-            </Donut>
-          );
-        })}
+        <Donut
+          className="distortion"
+          diameter={100}
+          min={0}
+          max={1}
+          step={0.25}
+          value={distortion}
+          theme={{
+            donutColor: "black",
+            donutThickness: 15,
+          }}
+          onValueChange={setDistortion}
+          ariaLabelledBy={"Distortion"}
+        >
+          <label id={"distortion"}>Distortion</label>
+        </Donut>
+        <Donut
+          className="AutoWah"
+          diameter={100}
+          min={0}
+          max={1}
+          step={0.25}
+          value={autoWah}
+          theme={{
+            donutColor: "black",
+            donutThickness: 15,
+          }}
+          onValueChange={setAutoWah}
+          ariaLabelledBy={"AutoWah"}
+        >
+          <label id={"autoWah"}>AutoWah</label>
+        </Donut>
+        <Donut
+          className="freeverb"
+          diameter={100}
+          min={0}
+          max={1}
+          step={0.25}
+          value={freeverb}
+          theme={{
+            donutColor: "black",
+            donutThickness: 15,
+          }}
+          onValueChange={setFreeverb}
+          ariaLabelledBy={"freeverb"}
+        >
+          <label id={"freeverb"}>Freeverb</label>
+        </Donut>
+        <Donut
+          className="tremolo"
+          diameter={100}
+          min={0}
+          max={1}
+          step={0.25}
+          value={tremolo}
+          theme={{
+            donutColor: "black",
+            donutThickness: 15,
+          }}
+          onValueChange={setTremolo}
+          ariaLabelledBy={"tremolo"}
+        >
+          <label id={"tremolo"}>Tremolo</label>
+        </Donut>
       </Stack>
       <ButtonGroup className="mb-2">
         {synthType.map((synth, idx) => (
@@ -178,52 +231,30 @@ function Synth() {
 export default Synth;
 
 {
-  /* <Donut
-          className="attack"
-          diameter={100}
-          min={0}
-          max={1}
-          step={0.25}
-          value={attack}
-          theme={{
-            donutColor: "black",
-            donutThickness: 15,
-          }}
-          onValueChange={setAttack}
-          ariaLabelledBy={"Attack"}
-        >
-          <label id={"Attack"}>Attack</label>
-        </Donut>
-        <Donut
-          className="decay"
-          diameter={100}
-          min={0}
-          max={1}
-          step={0.25}
-          value={decay}
-          theme={{
-            donutColor: "black",
-            donutThickness: 15,
-          }}
-          onValueChange={setDecay}
-          ariaLabelledBy={"Decay"}
-        >
-          <label id={"Decay"}>Decay</label>
-        </Donut>
-        <Donut
-          className="sustain"
-          diameter={100}
-          min={0}
-          max={1}
-          step={0.25}
-          value={sustain}
-          theme={{
-            donutColor: "black",
-            donutThickness: 15,
-          }}
-          onValueChange={setSustain}
-          ariaLabelledBy={"Sustain"}
-        >
-          <label id={"Sustain"}>Sustain</label>
-        </Donut> */
+  /* {effectType.map((property, idx) => {
+          return (
+            <Donut
+              key={idx}
+              id={property.name}
+              diameter={100}
+              min={0}
+              max={1}
+              step={0.25}
+              value={effect[property.name]}
+              theme={{
+                donutColor: "black",
+                donutThickness: 15,
+              }}
+              onValueChange={(value) => {
+                handleChange(value, property.name);
+              }}
+              ariaLabelledBy={property.name}
+            >
+              <label id={`property-${idx}`}>{property.name}</label>
+            </Donut>
+          );
+        })} */
+}
+
+{
 }
