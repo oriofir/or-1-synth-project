@@ -59,3 +59,9 @@ Stretch:
 - As a user, I want to utilize a drum machine to accompany my synth
 - As a user, I want to be able to save or delete my drum machine
 - as a user, I want to be able to log in so that I can have more control over my saved synths
+
+Wire Frames:
+
+![Alt text](https://imgur.com/PUIgGUP "Home Wireframe")
+![Alt text](https://imgur.com/JHMTXZ6 "Saved Synth Wireframe")
+![Alt text](https://imgur.com/6yGoRjJ "Req/Res Wireframe")
