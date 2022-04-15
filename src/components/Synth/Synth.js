@@ -215,6 +215,15 @@ function Synth() {
         {" "}
         {playing ? "Stop" : "Play"}
       </Button>
+      <SaveForm
+        typeSynth={typeSynth}
+        filter={filter}
+        delay={delay}
+        distortion={distortion}
+        autoWah={autoWah}
+        freeverb={freeverb}
+        tremolo={tremolo}
+      />
     </div>
   );
 }

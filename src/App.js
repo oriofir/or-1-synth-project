@@ -22,7 +22,6 @@ function App() {
 
           <Route path="/saved" element={<SavedSynths />}></Route>
         </Routes>
-        <SaveForm />
       </main>
     </>
   );
