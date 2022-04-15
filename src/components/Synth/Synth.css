@@ -15,12 +15,19 @@
   /* align-items: center; */
 }
 
-Button {
+.play {
   padding: 10px 60px;
   display: flex;
   background-color: white;
   align-items: flex-start;
   border-radius: 10px;
-  margin: 20px;
+  margin: 40px;
   display: inline;
+  width: 150px;
+}
+
+.mb-2 {
+  display: flex;
+  margin: 30px;
+  border-radius: 10px;
 }

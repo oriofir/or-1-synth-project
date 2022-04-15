@@ -20,26 +20,32 @@ const SaveForm = ({
 
   const initialSynthData = {
     name: "",
-    synthType: "",
-    filterAmount: 0,
-    delayAmount: 0,
-    distorionAmout: 0,
-    autoWahAmount: 0,
-    freeverbAount: 0,
-    tremoloAmount: 0,
+    synthType: typeSynth,
+    filterAmount: filter,
+    delayAmount: delay,
+    distorionAmout: distortion,
+    autoWahAmount: autoWah,
+    freeverbAount: freeverb,
+    tremoloAmount: tremolo,
   };
 
   const [newSynth, setNewSynth] = useState(initialSynthData);
 
   const handleChange = (event) => {
     setNewSynth((prevState) => {
+      console.log(event);
       return { ...prevState, [event.target.name]: event.target.value };
     });
   };
 
   return (
     <>
-      <Button className="save" variant="outline-dark" onClick={handleShow}>
+      <Button
+        className="save"
+        variant="outline-dark"
+        style={{ width: 150 }}
+        onClick={handleShow}
+      >
         Save
       </Button>
 
@@ -60,7 +66,7 @@ const SaveForm = ({
               autoFocus
               type="text"
               name="name"
-              onChange={handleClose}
+              onChange={handleChange}
             />
           </Form.Group>
         </Modal.Body>

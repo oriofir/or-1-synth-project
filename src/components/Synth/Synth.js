@@ -54,6 +54,25 @@ function Synth() {
 
   return (
     <div>
+      <Button
+        className="play"
+        variant="outline-dark"
+        onClick={() => {
+          setPlaying(!playing);
+        }}
+      >
+        {" "}
+        {playing ? "Stop" : "Play"}
+      </Button>
+      <SaveForm
+        typeSynth={typeSynth}
+        filter={filter}
+        delay={delay}
+        distortion={distortion}
+        autoWah={autoWah}
+        freeverb={freeverb}
+        tremolo={tremolo}
+      />
       <Song bpm={110} isPlaying={playing} volume={volume}>
         {" "}
         {/* Track with sequenced steps */}
@@ -204,26 +223,6 @@ function Synth() {
           </ToggleButton>
         ))}
       </ButtonGroup>
-
-      <Button
-        className="play"
-        variant="outline-dark"
-        onClick={() => {
-          setPlaying(!playing);
-        }}
-      >
-        {" "}
-        {playing ? "Stop" : "Play"}
-      </Button>
-      <SaveForm
-        typeSynth={typeSynth}
-        filter={filter}
-        delay={delay}
-        distortion={distortion}
-        autoWah={autoWah}
-        freeverb={freeverb}
-        tremolo={tremolo}
-      />
     </div>
   );
 }
