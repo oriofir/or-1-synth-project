@@ -62,6 +62,6 @@ Stretch:
 
 Wire Frames:
 
-![Alt text](https://imgur.com/PUIgGUP "Home Wireframe")
-![Alt text](https://imgur.com/JHMTXZ6 "Saved Synth Wireframe")
-![Alt text](https://imgur.com/6yGoRjJ "Req/Res Wireframe")
+![Home Wireframe](public/OR-1_HOMEPAGE.png "Home Wireframe")
+![Saved Synth Wireframe](public/Saved_Synths_Page.png "Saved Synth Wireframe")
+![Req Res Wireframe](public/Synth_Backend_Req_Res_Diagram.png "Req/Res Wireframe")
