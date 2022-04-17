@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { Col, Row, Stack, Button, Card } from "react-bootstrap";
 import API_URL from "../../apiConfig";
 import "./SavedSynths.css";
+import axios from "axios";
 
-function SavedSynths(props) {
+function SavedSynths(
+  name,
+  typeSynth,
+  filter,
+  delay,
+  distortion,
+  autoWah,
+  freeverb,
+  tremolo
+) {
   const [synths, setSynths] = useState([]);
   const [error, setError] = useState(false);
 
   const getSynthsList = async () => {
     try {
       const response = await fetch(API_URL);
+      console.log(response);
       if (response.status === 200) {
         const data = await response.json();
         setSynths(data);
-        console.log(data);
       }
     } catch (error) {
       console.log(error);
@@ -39,18 +49,9 @@ function SavedSynths(props) {
       <Row xs={1} s={1}>
         {synths.map((synth) => {
           return (
-            <Stack
-              style={{
-                display: "flex",
-
-                alignItems: "center",
-              }}
-              key={synth.id}
-              gap={2}
-              className="col-md-5 mx-auto"
-            >
-              <Link to="/">
-                <Button style={{ width: 150 }} variant="outline-dark">
+            <Stack key={synth.id} gap={2} className="col-md-12 mx-auto">
+              <Link to="/:id">
+                <Button style={{ minWidth: "20rem" }} variant="outline-dark">
                   {synth.name}
                 </Button>
               </Link>

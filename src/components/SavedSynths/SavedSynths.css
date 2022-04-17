@@ -2,4 +2,13 @@ h2 {
   display: flex;
   justify-content: center;
   padding-bottom: 40px;
+  padding-top: 40px;
+}
+
+.col-md-12 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  align-content: space-between;
+  padding: 20px;
 }

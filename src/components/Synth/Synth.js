@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Song, Track, Instrument, Effect } from "reactronica";
 import { Donut } from "react-dial-knob";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Button, Stack, ToggleButton, ButtonGroup } from "react-bootstrap";
 import "./Synth.css";
-import SaveForm from "../SaveForm/SaveForm";
+import SavedSynths from "../SavedSynths/SavedSynths";
+import SynthCreate from "../SynthCreate/SynthCreate";
 
 function Synth() {
-  const initialEffect = {
-    distortion: 0,
-    autoWah: 0,
-    freeverb: 0,
-    tremolo: 0,
-  };
+  // const initialEffect = {
+  //   distortion: 0,
+  //   autoWah: 0,
+  //   freeverb: 0,
+  //   tremolo: 0,
+  // };
+
+  function touchStarted() {
+    new AudioContext();
+  }
 
   // const [envelopeChange, setEnvelopeChange] = useState(initialEnvelope);
 
@@ -24,7 +30,8 @@ function Synth() {
   const [freeverb, setFreeverb] = useState(0);
   const [tremolo, setTremolo] = useState(0);
   const [typeSynth, setTypeSynth] = useState("duoSynth");
-  const [effect, setEffect] = useState(initialEffect);
+  const [name, setName] = useState("");
+  // const [effect, setEffect] = useState(initialEffect);
 
   // const changeAttack = (event) => {
   //   setEnvelopeChange((prevState) => {
@@ -52,6 +59,12 @@ function Synth() {
   //   { name: "tremolo", value: "tremolo" },
   // ];
 
+  useEffect(() => {
+    // fetch by id
+    // check if you're being passed a saved synth, pass the set state
+    // if nothing else being passed, then default 0
+  }, []);
+
   return (
     <div>
       <Button
@@ -64,7 +77,9 @@ function Synth() {
         {" "}
         {playing ? "Stop" : "Play"}
       </Button>
-      <SaveForm
+      <SynthCreate
+        name={name}
+        setName={setName}
         typeSynth={typeSynth}
         filter={filter}
         delay={delay}
@@ -73,6 +88,7 @@ function Synth() {
         freeverb={freeverb}
         tremolo={tremolo}
       />
+
       <Song bpm={110} isPlaying={playing} volume={volume}>
         {" "}
         {/* Track with sequenced steps */}
@@ -88,7 +104,6 @@ function Synth() {
           <Effect type="tremolo" wet={tremolo} />
         </Track>
       </Song>
-
       <Stack className="controlStack" direction="horizontal" gap={4}>
         <Donut
           className="volume"
@@ -140,7 +155,6 @@ function Synth() {
           <label id={"delay"}>Delay</label>
         </Donut>
       </Stack>
-
       <Stack className="envelopeStack" direction="horizontal" gap={4}>
         <Donut
           className="distortion"
@@ -188,7 +202,7 @@ function Synth() {
           onValueChange={setFreeverb}
           ariaLabelledBy={"freeverb"}
         >
-          <label id={"freeverb"}>Freeverb</label>
+          <label id={"freeverb"}>Reverb</label>
         </Donut>
         <Donut
           className="tremolo"
