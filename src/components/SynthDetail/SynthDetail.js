@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useParams, Link } from "react-router-dom";
+import { Donut } from "react-dial-knob";
+import { Container, Row, Col, Card, CardGroup, Button } from "react-bootstrap";
 import API_URL from "../../apiConfig";
 
 function SynthDetail(
@@ -41,7 +43,7 @@ function SynthDetail(
 
   return (
     <div>
-      <Link to={`/${id}`} />
+      <Link to={`/`} />
     </div>
   );
 }

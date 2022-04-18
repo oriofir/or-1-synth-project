@@ -102,12 +102,12 @@ function Synth() {
       <Link to="/:id">
         <SynthDetail
           setTypeSynth={setTypeSynth}
-          setFilter
-          setDelay
-          setDistortion
-          setAutoWah
-          setFreeverb
-          setTremolo
+          setFilter={setFilter}
+          setDelay={setDelay}
+          setDistortion={setDistortion}
+          setAutoWah={setAutoWah}
+          setFreeverb={setFreeverb}
+          setTremolo={setTremolo}
         />
       </Link>
 
