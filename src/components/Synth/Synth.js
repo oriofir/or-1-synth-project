@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Song, Track, Instrument, Effect } from "reactronica";
 import { Donut } from "react-dial-knob";
-import { Routes, Route, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button, Stack, ToggleButton, ButtonGroup } from "react-bootstrap";
 import "./Synth.css";
-import SavedSynths from "../SavedSynths/SavedSynths";
+// import SavedSynths from "../SavedSynths/SavedSynths";
 import SynthCreate from "../SynthCreate/SynthCreate";
-import API_URL from "../../apiConfig";
+// import API_URL from "../../apiConfig";
+import SynthDetail from "../SynthDetail/SynthDetail";
 
 function Synth() {
   // const initialEffect = {
@@ -62,18 +63,18 @@ function Synth() {
   //   { name: "tremolo", value: "tremolo" },
   // ];
 
-  useEffect(() => {
-    // fetch by id
-    // check if you're being passed a saved synth, pass the set state
+  // useEffect(() => {
+  //   // fetch by id
+  //   // check if you're being passed a saved synth, pass the set state
 
-    fetch(API_URL + `${id}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.log(data);
-      });
-  }, []);
+  //   fetch(API_URL + `${id}`)
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       console.log(data);
+  //     });
+  // }, []);
 
   return (
     <div>
@@ -98,6 +99,17 @@ function Synth() {
         freeverb={freeverb}
         tremolo={tremolo}
       />
+      <Link to="/:id">
+        <SynthDetail
+          setTypeSynth={setTypeSynth}
+          setFilter
+          setDelay
+          setDistortion
+          setAutoWah
+          setFreeverb
+          setTremolo
+        />
+      </Link>
 
       <Song bpm={110} isPlaying={playing} volume={volume}>
         {" "}

@@ -15,7 +15,7 @@ function App() {
           <Route path="/" element={<Synth className="synth" />}></Route>
 
           <Route path="/saved" element={<SavedSynths />}></Route>
-          {/* <Route path="/:id" element={<SynthDetail />}></Route> */}
+          <Route path="/:id" element={<SynthDetail />}></Route>
         </Routes>
       </main>
     </>

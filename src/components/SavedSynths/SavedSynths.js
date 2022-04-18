@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { Col, Row, Stack, Button, Card } from "react-bootstrap";
 import API_URL from "../../apiConfig";
 import "./SavedSynths.css";
@@ -8,6 +8,9 @@ import axios from "axios";
 function SavedSynths(props) {
   const [synths, setSynths] = useState([]);
   const [error, setError] = useState(false);
+
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const getSynthsList = async () => {
     try {
@@ -35,6 +38,24 @@ function SavedSynths(props) {
     return <div>No Synths Saved!</div>;
   }
 
+  const handleDelete = async () => {
+    const confirm = window.confirm("Delete Synth?");
+    if (confirm) {
+      try {
+        const response = await axios.delete(API_URL + `${id}`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.status == 200) {
+          navigate("/saved");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div>
       <h2>Saved Synths</h2>
@@ -47,6 +68,17 @@ function SavedSynths(props) {
                   {synth.name}
                 </Button>
               </Link>
+              <Button
+                style={{
+                  width: 75,
+                  height: 35,
+                }}
+                className="delete"
+                variant="dark"
+                onClick={handleDelete}
+              >
+                Delete
+              </Button>
             </Stack>
           );
         })}

@@ -73,7 +73,6 @@ function SynthCreate({
       });
       // console.log(response);
 
-      console.log(response);
       if (response.status === 201) {
         setNewSynth(response);
         navigate("/saved");

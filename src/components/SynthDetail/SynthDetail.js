@@ -14,7 +14,16 @@ function SynthDetail(
 ) {
   const { id } = useParams();
 
-  const [synth, setSynth] = useState({});
+  const [synth, setSynth] = useState({
+    name: `${name}`,
+    synth_type: `${setTypeSynth}`,
+    filter_amount: `${setFilter}`,
+    delay_amount: `${setDelay}`,
+    distortion_amount: `${setDistortion}`,
+    autowah_amount: `${setAutoWah}`,
+    freeverb_amount: `${setFreeverb}`,
+    tremolo_amount: `${setTremolo}`,
+  });
 
   useEffect(() => {
     // fetch by id
@@ -26,6 +35,7 @@ function SynthDetail(
       })
       .then((data) => {
         console.log(data);
+        setSynth(data);
       });
   }, []);
 
