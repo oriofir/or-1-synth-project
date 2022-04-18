@@ -62,7 +62,6 @@ function Synth() {
   useEffect(() => {
     // fetch by id
     // check if you're being passed a saved synth, pass the set state
-    // if nothing else being passed, then default 0
   }, []);
 
   return (

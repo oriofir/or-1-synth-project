@@ -21,9 +21,10 @@ function SavedSynths(
   const getSynthsList = async () => {
     try {
       const response = await fetch(API_URL);
-      console.log(response);
+
       if (response.status === 200) {
         const data = await response.json();
+        console.log(data);
         setSynths(data);
       }
     } catch (error) {
@@ -50,7 +51,7 @@ function SavedSynths(
         {synths.map((synth) => {
           return (
             <Stack key={synth.id} gap={2} className="col-md-12 mx-auto">
-              <Link to="/:id">
+              <Link to="/">
                 <Button style={{ minWidth: "20rem" }} variant="outline-dark">
                   {synth.name}
                 </Button>

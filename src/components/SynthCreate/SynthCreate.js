@@ -39,15 +39,27 @@ function SynthCreate({
   const handleChange = (event) => {
     setName((newSynth) => {
       // console.log(event);
-      return { ...newSynth, [event.target.name]: event.target.value };
+      return event.target.value;
     });
   };
 
   const createNewSynth = async (event) => {
     // event.preventDefault();
-    const formData = new FormData();
-    console.log("synth", newSynth);
-    formData.append("synth", JSON.stringify(newSynth));
+    // const formData = new FormData();
+    const formData = JSON.stringify({
+      name: `${name}`,
+      synth_type: `${typeSynth}`,
+      filter_amount: `${filter}`,
+      delay_amount: `${delay}`,
+      distortion_amount: `${distortion}`,
+      autowah_amount: `${autoWah}`,
+      freeverb_amount: `${freeverb}`,
+      tremolo_amount: `${tremolo}`,
+    });
+    // console.log(delay);®
+    // console.log("form data", formData);
+    // console.log("synth", newSynth);
+    // formData.append("synth", JSON.stringify(newSynth));
     try {
       const response = await fetch(API_URL, {
         method: "POST",
@@ -59,18 +71,18 @@ function SynthCreate({
 
         mode: "cors",
       });
-      console.log(response);
+      // console.log(response);
       setNewSynth(response);
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log("new synth", newSynth);
+  // console.log("new synth", newSynth);
 
-  useEffect(() => {
-    createNewSynth();
-  }, []);
+  // useEffect(() => {
+  //   createNewSynth();
+  // }, []);
 
   return (
     <>
