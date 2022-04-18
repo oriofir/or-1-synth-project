@@ -72,7 +72,12 @@ function SynthCreate({
         mode: "cors",
       });
       // console.log(response);
-      setNewSynth(response);
+
+      console.log(response);
+      if (response.status === 201) {
+        setNewSynth(response);
+        navigate("/saved");
+      }
     } catch (error) {
       console.log(error);
     }
