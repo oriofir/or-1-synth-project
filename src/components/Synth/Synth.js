@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Song, Track, Instrument, Effect } from "reactronica";
 import { Donut } from "react-dial-knob";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import { Button, Stack, ToggleButton, ButtonGroup } from "react-bootstrap";
 import "./Synth.css";
 import SavedSynths from "../SavedSynths/SavedSynths";
 import SynthCreate from "../SynthCreate/SynthCreate";
+import API_URL from "../../apiConfig";
 
 function Synth() {
   // const initialEffect = {
@@ -18,6 +19,8 @@ function Synth() {
   function touchStarted() {
     new AudioContext();
   }
+
+  const { id } = useParams;
 
   // const [envelopeChange, setEnvelopeChange] = useState(initialEnvelope);
 
@@ -62,6 +65,14 @@ function Synth() {
   useEffect(() => {
     // fetch by id
     // check if you're being passed a saved synth, pass the set state
+
+    fetch(API_URL + `${id}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
   }, []);
 
   return (

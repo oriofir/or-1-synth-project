@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams, Link } from "react-router-dom";
 import API_URL from "../../apiConfig";
 
-function SynthDetail(props) {
+function SynthDetail(
+  name,
+  setTypeSynth,
+  setFilter,
+  setDelay,
+  setDistortion,
+  setAutoWah,
+  setFreeverb,
+  setTremolo
+) {
   const { id } = useParams();
 
   const [synth, setSynth] = useState({});
 
-  const loadSynth = async () => {
-    try {
-      const response = await fetch(API_URL + `saved/${id}/`);
-      console.log(response);
-      if (response.status === 200) {
-        const data = await response.json();
-        setSynth(data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    loadSynth();
-    return;
+    // fetch by id
+    // check if you're being passed a saved synth, pass the set state
+
+    fetch(API_URL + `${id}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
   }, []);
+
   return (
     <div>
-      <Navigate to="/" onClick={loadSynth} />
+      <Link to={`/${id}`} />
     </div>
   );
 }

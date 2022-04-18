@@ -5,16 +5,7 @@ import API_URL from "../../apiConfig";
 import "./SavedSynths.css";
 import axios from "axios";
 
-function SavedSynths(
-  name,
-  typeSynth,
-  filter,
-  delay,
-  distortion,
-  autoWah,
-  freeverb,
-  tremolo
-) {
+function SavedSynths(props) {
   const [synths, setSynths] = useState([]);
   const [error, setError] = useState(false);
 
@@ -51,7 +42,7 @@ function SavedSynths(
         {synths.map((synth) => {
           return (
             <Stack key={synth.id} gap={2} className="col-md-12 mx-auto">
-              <Link to="/">
+              <Link to={`/${synth.id}`}>
                 <Button style={{ minWidth: "20rem" }} variant="outline-dark">
                   {synth.name}
                 </Button>
