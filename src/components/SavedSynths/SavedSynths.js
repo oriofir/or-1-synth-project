@@ -68,17 +68,19 @@ function SavedSynths(props) {
                   {synth.name}
                 </Button>
               </Link>
-              <Button
-                style={{
-                  width: 75,
-                  height: 35,
-                }}
-                className="delete"
-                variant="dark"
-                onClick={handleDelete}
-              >
-                Delete
-              </Button>
+              <Link to={`/${synth.id}`}>
+                <Button
+                  style={{
+                    width: 75,
+                    height: 35,
+                  }}
+                  className="delete"
+                  variant="dark"
+                  onClick={() => handleDelete(synth.id)}
+                >
+                  Delete
+                </Button>
+              </Link>
             </Stack>
           );
         })}
