@@ -4,27 +4,10 @@ import { Donut } from "react-dial-knob";
 import { Link, useParams } from "react-router-dom";
 import { Button, Stack, ToggleButton, ButtonGroup } from "react-bootstrap";
 import "./Synth.css";
-// import SavedSynths from "../SavedSynths/SavedSynths";
 import SynthCreate from "../SynthCreate/SynthCreate";
-// import API_URL from "../../apiConfig";
 import SynthDetail from "../SynthDetail/SynthDetail";
 
 function Synth() {
-  // const initialEffect = {
-  //   distortion: 0,
-  //   autoWah: 0,
-  //   freeverb: 0,
-  //   tremolo: 0,
-  // };
-
-  function touchStarted() {
-    new AudioContext();
-  }
-
-  const { id } = useParams;
-
-  // const [envelopeChange, setEnvelopeChange] = useState(initialEnvelope);
-
   const [playing, setPlaying] = useState(false);
   const [volume, setVolume] = useState(-5);
   const [filter, setFilter] = useState(0);
@@ -35,13 +18,6 @@ function Synth() {
   const [tremolo, setTremolo] = useState(0);
   const [typeSynth, setTypeSynth] = useState("duoSynth");
   const [name, setName] = useState("");
-  // const [effect, setEffect] = useState(initialEffect);
-
-  // const changeAttack = (event) => {
-  //   setEnvelopeChange((prevState) => {
-  //     return { ...prevState, [event.target.attack]: event.target.value };
-  //   });
-  // };
 
   const synthType = [
     { name: "MonoSynth", value: "monoSynth" },
@@ -50,31 +26,6 @@ function Synth() {
     { name: "AMSynth", value: "amSynth" },
     { name: "PolySynth", value: "polySynth" },
   ];
-
-  // const handleChange = (value, property) => {
-  //   console.log(value, property);
-  //   setEffect({ ...effect, [property]: value });
-  // }
-
-  // const effectType = [
-  //   { name: "distortion", value: "distortion" },
-  //   { name: "autoWah", value: "autoWah" },
-  //   { name: "freeverb", value: "freeverb" },
-  //   { name: "tremolo", value: "tremolo" },
-  // ];
-
-  // useEffect(() => {
-  //   // fetch by id
-  //   // check if you're being passed a saved synth, pass the set state
-
-  //   fetch(API_URL + `${id}`)
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // }, []);
 
   return (
     <div>
@@ -113,11 +64,9 @@ function Synth() {
 
       <Song bpm={110} isPlaying={playing} volume={volume}>
         {" "}
-        {/* Track with sequenced steps */}
         <Track steps={["C2", null]}>
-          {/* Browser-based synth */}
           <Instrument type={typeSynth} />
-          {/* Feedback effect  */}
+
           <Effect type="autoFilter" wet={filter} />
           <Effect type="feedbackDelay" wet={delay} />
           <Effect type="distortion" wet={distortion} />
@@ -264,27 +213,3 @@ function Synth() {
 }
 
 export default Synth;
-
-/* {effectType.map((property, idx) => {
-          return (
-            <Donut
-              key={idx}
-              id={property.name}
-              diameter={100}
-              min={0}
-              max={1}
-              step={0.25}
-              value={effect[property.name]}
-              theme={{
-                donutColor: "black",
-                donutThickness: 15,
-              }}
-              onValueChange={(value) => {
-                handleChange(value, property.name);
-              }}
-              ariaLabelledBy={property.name}
-            >
-              <label id={`property-${idx}`}>{property.name}</label>
-            </Donut>
-          );
-        })} */

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useParams, Link } from "react-router-dom";
-import { Donut } from "react-dial-knob";
-import { Container, Row, Col, Card, CardGroup, Button } from "react-bootstrap";
 import API_URL from "../../apiConfig";
 
 function SynthDetail(
@@ -28,15 +26,12 @@ function SynthDetail(
   });
 
   useEffect(() => {
-    // fetch by id
-    // check if you're being passed a saved synth, pass the set state
-
     fetch(API_URL + `${id}`)
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setSynth(data);
       });
   }, []);
