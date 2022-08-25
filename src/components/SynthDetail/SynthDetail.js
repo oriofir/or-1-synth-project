@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, useParams, Link } from "react-router-dom";
+import { Song, Track, Instrument, Effect } from "reactronica";
+import { Donut } from "react-dial-knob";
+import { Button, Stack, ToggleButton, ButtonGroup } from "react-bootstrap";
 import API_URL from "../../apiConfig";
 
 function SynthDetail(

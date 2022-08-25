@@ -42,11 +42,7 @@ function SavedSynths(props) {
     const confirm = window.confirm("Delete Synth?");
     if (confirm) {
       try {
-        const response = await axios.delete(API_URL + `${id}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.delete(API_URL + `${id}`, synths);
         if (response.status == 200) {
           navigate("/saved");
         }
@@ -68,7 +64,7 @@ function SavedSynths(props) {
                   {synth.name}
                 </Button>
               </Link>
-              <Link to={`/${synth.id}`}>
+              <Link to={`/saved`}>
                 <Button
                   className="delete"
                   variant="dark"

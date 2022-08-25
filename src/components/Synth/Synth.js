@@ -64,7 +64,7 @@ function Synth() {
 
       <Song bpm={110} isPlaying={playing} volume={volume}>
         {" "}
-        <Track steps={["C2", null]}>
+        <Track steps={["C3", null]}>
           <Instrument type={typeSynth} />
 
           <Effect type="autoFilter" wet={filter} />
@@ -196,6 +196,7 @@ function Synth() {
         {synthType.map((synth, idx) => (
           <ToggleButton
             key={idx}
+            className="synthToggle"
             id={`synth-${idx}`}
             type="checkbox"
             variant={idx ? "outline-dark" : "outline-dark"}
