@@ -43,7 +43,7 @@ function SavedSynths(props) {
     if (confirm) {
       try {
         const response = await axios.delete(API_URL + `${id}`, synths);
-        if (response.status == 200) {
+        if (response.status === 200) {
           navigate("/saved");
         }
       } catch (error) {

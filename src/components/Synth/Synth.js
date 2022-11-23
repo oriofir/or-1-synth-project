@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Song, Track, Instrument, Effect } from "reactronica";
 import { Donut } from "react-dial-knob";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, Stack, ToggleButton, ButtonGroup } from "react-bootstrap";
 import "./Synth.css";
 import SynthCreate from "../SynthCreate/SynthCreate";
