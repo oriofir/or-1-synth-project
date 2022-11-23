@@ -6,6 +6,7 @@ import { Button, Stack, ToggleButton, ButtonGroup } from "react-bootstrap";
 import "./Synth.css";
 import SynthCreate from "../SynthCreate/SynthCreate";
 import SynthDetail from "../SynthDetail/SynthDetail";
+// import PianoRoll from "../PianoRoll/PianoRoll";
 
 function Synth() {
   const [playing, setPlaying] = useState(false);
