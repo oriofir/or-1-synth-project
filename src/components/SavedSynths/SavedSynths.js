@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import { Col, Row, Stack, Button, Card } from "react-bootstrap";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Row, Stack, Button } from "react-bootstrap";
 import API_URL from "../../apiConfig";
 import "./SavedSynths.css";
 import axios from "axios";
@@ -43,7 +43,7 @@ function SavedSynths(props) {
     if (confirm) {
       try {
         const response = await axios.delete(API_URL + `${id}`, synths);
-        if (response.status == 200) {
+        if (response.status === 200) {
           navigate("/saved");
         }
       } catch (error) {

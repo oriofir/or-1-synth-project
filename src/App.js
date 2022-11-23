@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Synth from "./components/Synth/Synth";
 import SavedSynths from "./components/SavedSynths/SavedSynths";
