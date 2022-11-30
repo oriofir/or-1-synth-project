@@ -6,7 +6,7 @@ import { Button, Stack, ToggleButton, ButtonGroup } from "react-bootstrap";
 import "./Synth.css";
 import SynthCreate from "../SynthCreate/SynthCreate";
 import SynthDetail from "../SynthDetail/SynthDetail";
-// import PianoRoll from "../PianoRoll/PianoRoll";
+import PianoRollTool from "../PianoRollTool/PianoRollTool";
 
 function Synth() {
   const [playing, setPlaying] = useState(false);
@@ -210,6 +210,7 @@ function Synth() {
           </ToggleButton>
         ))}
       </ButtonGroup>
+      <PianoRollTool />
     </div>
   );
 }

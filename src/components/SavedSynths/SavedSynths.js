@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import { Col, Row, Stack, Button, Card } from "react-bootstrap";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Row, Stack, Button } from "react-bootstrap";
 import API_URL from "../../apiConfig";
 import "./SavedSynths.css";
 import axios from "axios";
@@ -59,7 +59,7 @@ function SavedSynths(props) {
         {synths.map((synth) => {
           return (
             <Stack key={synth.id} gap={2} className="col-md-12 mx-auto">
-              <Link to={`/${synth.id}`}>
+              <Link to={`${synth.id}`}>
                 <Button style={{ minWidth: "20rem" }} variant="outline-dark">
                   {synth.name}
                 </Button>
